@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+#!/usr/bin/env python
 #########################
 ##服务端
 #########################
@@ -29,7 +30,6 @@ while True:  # 一个死循环，直到客户端发送‘exit’的信号，才�
 conn.close()     # 关闭连接
 
 #多线程
-#!/usr/bin/env python
 # -*- coding:utf-8 -*-
 import socket
 import threading        # 导入线程模块
