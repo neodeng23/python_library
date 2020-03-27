@@ -20,6 +20,15 @@ import socketserver
 4.server.serve_forever()表示该服务器在正常情况下将永远运行。
 '''
 
+'''
+ThreadingTCPServer/TCPServer/ForkingTCPServer的区别，原理可同样引申到UDP
+
+这三个类其实就是对接收到request请求后的不同处理方法。
+TCPServer是接收到请求后执行handle方法，如果前一个的handle没有结束，那么其他的请求将不会受理，新的客户端也无法加入。
+ThreadingTCPServer允许前一连接的handle未结束也可受理新的请求和连接新的客户端，建立新线程的方法运行handle
+ForkingTCPServer允许前一连接的handle未结束也可受理新的请求和连接新的客户端，后者用新进程的方法运行handle
+'''
+
 class MyServer(socketserver.BaseRequestHandler):
     '''必须继承socketserver.BaseRequestHandler类'''
     def handle(self):
