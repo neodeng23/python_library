@@ -39,3 +39,45 @@ pyinstaller会分析你的代码myscript.py并且:
 |----|----|----|
 |-c 或者 --console 或者 --nowindowed|打开一个控制台窗口, 这是默认选项, 在windows系统中, 如果入口文件是 .pyw 文件, 此选项无效.|默认的, 不用写|
 |-w或者–windowed 或者 --noconsole|不显示控制台窗口(类似cmd的黑框框), 如果你写的是带UI的程序, 此选项基本必选.如果入口程序是pyw文件, 此选项默认生效.|pyinstaller -w myscript.py|
+
+####可以通过下面命令单独生成spec文件
+pyi-makespec <options> script.py
+
+####打包的时候默认生成在当前目录下，也可以指定生成目录
+pyinstaller --specpath=$ProjectFileDir$\build <options> test.py
+
+####后面可以直接通过.spec文件来打包
+pyinstaller <options> test.spec
+
+
+
+##hmcliver_code
+####client
+pyinstaller -w --add-data C:\Users\epican\Desktop\hmcLiverClient\hmcLiverClient\DATA;DATA EPNhmc-Liver-1-Client.py
+####server
+pyinstaller --distpath /home/huyl/test --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/huyl/ENV/serv2/lib/python3.5/site-packages/SQLAlchemy-1.2.7-py3.5-linux-x86_64.egg/  EPNhmc_Liver_Server.py
+#####modify spec
+'''
+#####add following lines will compile pandas with pyinstaller.
+#####请参考../main.spec, 将下述代码加入到pyz函数下方。
+
+def get_pandas_path():
+
+    import pandas
+    
+    pandas_path = pandas.__path__[0]
+    
+    return pandas_path
+
+dict_tree = Tree(get_pandas_path(), prefix='pandas', excludes=["*.pyc"])
+
+a.datas += dict_tree
+
+a.binaries = filter(lambda x: 'pandas' not in x[0], a.binaries)
+
+'''
+
+pyinstaller --distpath /home/huyl/test --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/huyl/ENV/serv2/lib/python3.5/site-packages/SQLAlchemy-1.2.7-py3.5-linux-x86_64.egg/ EPNhmc_Liver_Server.spec
+
+###我的server端
+pyinstaller --distpath /home/denglf/EPNhmc --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/denglf/ENV/serv2/lib/python3.5/site-packages/SQLAlchemy-1.2.7-py3.5-linux-x86_64.egg/ EPNhmc_Liver_Server.spec 
