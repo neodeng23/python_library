@@ -80,4 +80,8 @@ a.binaries = filter(lambda x: 'pandas' not in x[0], a.binaries)
 pyinstaller --distpath /home/huyl/test --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/huyl/ENV/serv2/lib/python3.5/site-packages/SQLAlchemy-1.2.7-py3.5-linux-x86_64.egg/ EPNhmc_Liver_Server.spec
 
 ###我的server端
-pyinstaller --distpath /home/denglf/EPNhmc/test --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/denglf/ENV/serv2/lib/python3.5/site-packages/SQLAlchemy-1.2.7-py3.5-linux-x86_64.egg/ EPNhmc_Liver_Server.spec 
+pyinstaller --distpath /home/denglf/EPNhmc/test --add-data $(pwd)/src:src --add-data $(pwd)/conf:conf --add-data $(pwd)/DATA:DATA -p /home/denglf/anaconda3/pkgs/sqlalchemy-1.2.11-py37h7b6447c_0/lib/python3.7/site-packages/SQLAlchemy-1.2.11-py3.7.egg-info
+ EPNhmc_Liver_Server.spec 
+
+###虚拟环境成功实例：
+pipenv run pyinstaller --distpath /home/denglf/EPNhmc/test/ /home/denglf/EPNhmc/test/hmcLiverServer/EPNhmc_Liver_Server.spec 
