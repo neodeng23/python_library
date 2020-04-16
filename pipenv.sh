@@ -29,6 +29,9 @@ $ pip install --upgrade pipenv
 
 #安装依赖包
 $ pipenv install xxx
+export PATH="/home/denglf/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 #删除依赖包
 $ pipenv uninstall xxx
