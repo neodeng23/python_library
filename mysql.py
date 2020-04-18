@@ -22,3 +22,7 @@ for i in range(c.fowcount):
     if row[1] == 'python':
         print('find')
         break
+
+#插入数据
+c.execute('INSERT INTO sq_course(NAME,'desc',display_idx) VALUES('xx' ,'xxx','6')')
+conn.commit()
